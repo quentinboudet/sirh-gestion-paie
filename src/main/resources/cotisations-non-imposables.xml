@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	
+	<!-- cotisations non imposables -->
+
+	<bean id="ep01" class="dev.paie.entite.Cotisation">
+		<property name="code" value="EP01"></property>
+		<property name="libelle" value="URSSAF MALADIE - MATERNITE - INVALIDITE"></property>
+		<property name="tauxSalarial" value="0.007500"></property>
+		<property name="tauxPatronal" value="0.128000"></property>
+	</bean>
+
+	<bean id="ep02" class="dev.paie.entite.Cotisation">
+		<property name="code" value="EP02"></property>
+		<property name="libelle" value="URSSAF SOLIDARITE"></property>
+		<property name="tauxPatronal" value="0.003000"></property>
+	</bean>
+	
+	<bean id="ep03" class="dev.paie.entite.Cotisation">
+		<property name="code" value="EP03"></property>
+		<property name="libelle" value="URSSAF ACCIDENT DU TRAVAIL"></property>
+		<property name="tauxPatronal" value="0.012000"></property>
+	</bean>
+	
+	<bean id="ep04" class="dev.paie.entite.Cotisation">
+		<property name="code" value="EP04"></property>
+		<property name="libelle" value="URSSAF ALLOC. FAMILIALES"></property>
+		<property name="tauxPatronal" value="0.054000"></property>
+	</bean>
+	
+	<bean id="ep05" class="dev.paie.entite.Cotisation">
+		<property name="code" value="EP05"></property>
+		<property name="libelle" value="URSSAF ASS. VIEILLESSE PLAF."></property>
+		<property name="tauxSalarial" value="0.067500"></property>
+		<property name="tauxPatronal" value="0.084000"></property>
+	</bean>
+	
+	<bean id="ep06" class="dev.paie.entite.Cotisation">
+		<property name="code" value="EP06"></property>
+		<property name="libelle" value="URSSAF ASS. VIEILLESSE DEPLAF."></property>
+		<property name="tauxSalarial" value="0.001000"></property>
+		<property name="tauxPatronal" value="0.016000"></property>
+	</bean>
+	
+	<bean id="ep07" class="dev.paie.entite.Cotisation">
+		<property name="code" value="EP07"></property>
+		<property name="libelle" value="URSSAF FNAL"></property>
+		<property name="tauxPatronal" value="0.001000"></property>
+	</bean>
+	
+	<bean id="ep12" class="dev.paie.entite.Cotisation">
+		<property name="code" value="EP12"></property>
+		<property name="libelle" value="ASSEDIC Tr. A"></property>
+		<property name="tauxSalarial" value="0.024000"></property>
+		<property name="tauxPatronal" value="0.040000"></property>
+	</bean>
+	
+	<bean id="ep14" class="dev.paie.entite.Cotisation">
+		<property name="code" value="EP14"></property>
+		<property name="libelle" value="ASSEDIC Tr. B"></property>
+		<property name="tauxSalarial" value="0.024000"></property>
+		<property name="tauxPatronal" value="0.040000"></property>
+	</bean>
+	
+	<bean id="ep19" class="dev.paie.entite.Cotisation">
+		<property name="code" value="EP19"></property>
+		<property name="libelle" value="FONDS DE GARANTIE (AGS)"></property>
+		<property name="tauxPatronal" value="0.003000"></property>
+	</bean>
+	
+	<bean id="ep20" class="dev.paie.entite.Cotisation">
+		<property name="code" value="EP20"></property>
+		<property name="libelle" value="RETRAITE ARRCO NC T1"></property>
+		<property name="tauxSalarial" value="0.030000"></property>
+		<property name="tauxPatronal" value="0.045000"></property>
+	</bean>
+	
+	<bean id="ep21" class="dev.paie.entite.Cotisation">
+		<property name="code" value="EP21"></property>
+		<property name="libelle" value="RETRAITE ARRCO NC T2"></property>
+		<property name="tauxSalarial" value="0.081000"></property>
+		<property name="tauxPatronal" value="0.0121500"></property>
+	</bean>
+	
+	<bean id="ep28" class="dev.paie.entite.Cotisation">
+		<property name="code" value="EP28"></property>
+		<property name="libelle" value="TAXE APPRENTISSAGE"></property>
+		<property name="tauxPatronal" value="0.006800"></property>
+	</bean>
+
+	<bean id="ep37" class="dev.paie.entite.Cotisation">
+		<property name="code" value="EP37"></property>
+		<property name="libelle" value="CSG DEDUCTIBLE"></property>
+		<property name="tauxSalarial" value="0.051000"></property>
+	</bean>
+	
+	
+	<bean id="epr1" class="dev.paie.entite.Cotisation">
+		<property name="code" value="EPR1"></property>
+		<property name="libelle" value="AGFF NC TRANCHE 1"></property>
+		<property name="tauxSalarial" value="0.008000"></property>
+		<property name="tauxPatronal" value="0.012000"></property>
+	</bean>
+	
+	<bean id="epr2" class="dev.paie.entite.Cotisation">
+		<property name="code" value="EPR2"></property>
+		<property name="libelle" value="AGFF NC TRANCHE 2"></property>
+		<property name="tauxSalarial" value="0.009000"></property>
+		<property name="tauxPatronal" value="0.013000"></property>
+	</bean>
+	
+	<bean id="e900" class="dev.paie.entite.Cotisation">
+		<property name="code" value="E900"></property>
+		<property name="libelle" value="PREVOYANCE NON CADRE TA"></property>
+		<property name="tauxSalarial" value="0.003700"></property>
+		<property name="tauxPatronal" value="0.003700"></property>
+	</bean>
+	
+	<bean id="e901" class="dev.paie.entite.Cotisation">
+		<property name="code" value="E901"></property>
+		<property name="libelle" value="PREVOYANCE NON CADRE TB"></property>
+		<property name="tauxSalarial" value="0.004880"></property>
+		<property name="tauxPatronal" value="0.007320"></property>
+	</bean>
+	
+	
+	
+
+
+</beans>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	
+	<!-- cotisations imposables -->
+
+	<bean id="sp01" class="dev.paie.entite.Cotisation">
+		<property name="code" value="SP01"></property>
+		<property name="libelle" value="URSSAF CSG NON DEDUCTIBLE"></property>
+		<property name="tauxSalarial" value="0.024000"></property>
+	</bean>
+
+	<bean id="sp02" class="dev.paie.entite.Cotisation">
+		<property name="code" value="SP02"></property>
+		<property name="libelle" value="URSSAF CRDS"></property>
+		<property name="tauxSalarial" value="0.005000"></property>
+	</bean>
+
+
+</beans>
