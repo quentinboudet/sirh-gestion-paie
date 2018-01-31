@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<!-- importer une configuration dans une autre -->
+	<import resource="classpath:cotisations-imposables.xml" />
+	<import resource="classpath:cotisations-non-imposables.xml" />
+
+	<!-- -->
+
+	<bean id="grade" class="dev.paie.entite.Grade" p:nbHeuresBase="151.67"
+		p:tauxBase="11.0984">
+	</bean>
+	
+	<bean id="pr1" class="dev.paie.entite.ProfilRemuneration">
+		<property name="cotisationsNonImposables">
+			<util:list value-type="dev.paie.entite.Cotisation">
+				<ref bean="ep01" />
+				<ref bean="ep02" />
+				<ref bean="ep03" />
+				<ref bean="ep04" />
+				<ref bean="ep05" />
+				<ref bean="ep06" />
+				<ref bean="ep07" />
+				<ref bean="ep12" />
+				<ref bean="ep19" />
+				<ref bean="ep20" />
+				<ref bean="epr1" />
+				<ref bean="e900" />
+				<ref bean="ep28" />
+				<ref bean="ep37" />
+			</util:list>
+		</property>
+		<property name="cotisationsImposables">
+			<util:list value-type="dev.paie.entite.Cotisation">
+				<ref bean="sp01" />
+				<ref bean="sp02" />
+			</util:list>
+		</property>
+	</bean>
+
+
+	<bean id="ent1" class="dev.paie.entite.Entreprise">
+		<property name="siret" value="80966785000022"></property>
+		<property name="denomination" value="Dev Entreprise"></property>
+		<property name="codeNaf" value="6202A"></property>
+	</bean>
+
+	<bean id="re1" class="dev.paie.entite.RemunerationEmploye"
+		p:grade-ref="grade"
+		p:matricule="M01"
+		p:entreprise-ref="ent1"
+		p:profilRemuneration-ref="pr1"
+	/>
+
+	<bean id="bulletin1" class="dev.paie.entite.BulletinSalaire">
+		<property name="primeExceptionnelle" value="1000" />
+		<property name="remunerationEmploye" ref="re1" />
+	</bean>
+
+
+</beans>
