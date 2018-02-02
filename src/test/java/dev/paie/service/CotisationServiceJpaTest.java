@@ -40,7 +40,7 @@ public class CotisationServiceJpaTest {
 		Cotisation newCotisation = new Cotisation(); 
 		// TODO sauvegarder une nouvelle cotisation
 
-		newCotisation.setId(6);
+		newCotisation.setId(1);
 		newCotisation.setCode("CODE1");
 		newCotisation.setLibelle("UN");
 		newCotisation.setTauxPatronal(new BigDecimal("2"));
@@ -49,8 +49,8 @@ public class CotisationServiceJpaTest {
 		cotisationService.sauvegarder(newCotisation);
 		
 		// TODO vérifier qu'il est possible de récupérer la nouvelle cotisation via la méthode lister
-		Cotisation cotisation1 = cotisationService.lister().get(1);
-		assertThat(cotisation1.getId()).isEqualTo(2);
+		Cotisation cotisation1 = cotisationService.lister().get(0);
+		assertThat(cotisation1.getId()).isEqualTo(1);
 		assertThat(cotisation1.getCode()).isEqualTo("CODE1");
 		assertThat(cotisation1.getLibelle()).isEqualTo("UN");
 		assertThat(cotisation1.getTauxPatronal()).isEqualTo(pu.formaterBigDecimal(new BigDecimal("2")));
@@ -64,8 +64,8 @@ public class CotisationServiceJpaTest {
 		cotisationService.mettreAJour(newCotisation);
 		
 		// TODO vérifier que les modifications sont bien prises en compte via la méthode lister
-		cotisation1 = cotisationService.lister().get(1);
-		assertThat(cotisation1.getId()).isEqualTo(2);
+		cotisation1 = cotisationService.lister().get(0);
+		assertThat(cotisation1.getId()).isEqualTo(1);
 		assertThat(cotisation1.getCode()).isEqualTo("Code2");
 		assertThat(cotisation1.getLibelle()).isEqualTo("deux");
 		assertThat(cotisation1.getTauxPatronal()).isEqualTo(pu.formaterBigDecimal(new BigDecimal("1")));
