@@ -20,7 +20,7 @@ import dev.paie.util.PaieUtils;
 
 
 //Sélection des classes de configuration Spring à utiliser lors du test
-@ContextConfiguration(classes = { ServicesConfig.class, JeuxDeDonneesConfig.class, DataSourceMySQLConfig.class, JpaConfig.class})
+@ContextConfiguration(classes = { ServicesConfig.class})
 //Configuration JUnit pour que Spring prenne la main sur le cycle de vie du test
 @RunWith(SpringRunner.class)
 public class CotisationServiceJpaTest {
@@ -29,9 +29,6 @@ public class CotisationServiceJpaTest {
 	@Autowired
 	private CotisationService cotisationService;
 
-//	@Autowired
-//	@Qualifier("cotisation")
-//	private Cotisation newCotisation; 
 			
 	@Test
 	public void test_sauvegarder_lister_mettre_a_jour() {
