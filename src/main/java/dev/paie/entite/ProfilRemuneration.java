@@ -2,16 +2,30 @@ package dev.paie.entite;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+
+@Entity
+@Table(name="sirh_profil_remuneration")
 public class ProfilRemuneration {
 
+	@Id
 	private Integer id;
+	
+	@Column(name="code")
 	private String code;
 
+	@OneToMany
 	private List<Cotisation> cotisationsNonImposables;
-	
+
+	@OneToMany
 	private List<Cotisation> cotisationsImposables;
-	
+
+	@OneToMany
 	private List<Avantage> avantages;
 
 	public Integer getId() {

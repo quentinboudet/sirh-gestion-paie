@@ -38,7 +38,7 @@ public class AvantageRepositoryTest {
 		
 		// TODO vérifier qu'il est possible de récupérer le nouvel avantage via la méthode findOne
 //		Avantage avantageVerif = avantageRepository.findOne(1);
-		Avantage avantageVerif = avantageRepository.getByCode("CODE1");
+		Avantage avantageVerif = avantageRepository.findByCode("CODE1");
 		assertThat(avantageVerif.getId()).isEqualTo(1);
 		assertThat(avantageVerif.getCode()).isEqualTo("CODE1");
 		assertThat(avantageVerif.getNom()).isEqualTo("avantage1");
@@ -50,7 +50,7 @@ public class AvantageRepositoryTest {
 		
 		// TODO vérifier que les modifications sont bien prises en compte via la méthode findOne
 //		avantageVerif = avantageRepository.findOne(1);
-		avantageVerif = avantageRepository.getByCode("CODE1");
+		avantageVerif = avantageRepository.findByCode("CODE1");
 		assertThat(avantageVerif.getId()).isEqualTo(1);
 		assertThat(avantageVerif.getCode()).isEqualTo("CODE1");
 		assertThat(avantageVerif.getNom()).isEqualTo("avantage1");
