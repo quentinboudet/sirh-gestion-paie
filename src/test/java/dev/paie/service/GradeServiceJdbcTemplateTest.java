@@ -15,14 +15,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 import dev.paie.config.DataSourceMySQLConfig;
 import dev.paie.config.ServicesConfig;
 import dev.paie.entite.Grade;
+import dev.paie.util.PaieUtils;
 
 //TODO compléter la configuration
 
 //Sélection des classes de configuration Spring à utiliser lors du test
-@ContextConfiguration(classes = { ServicesConfig.class, JeuxDeDonneesConfig.class, DataSourceMySQLConfig.class})
+@ContextConfiguration(classes = { ServicesConfig.class, JeuxDeDonneesConfig.class})
 //Configuration JUnit pour que Spring prenne la main sur le cycle de vie du test
 @RunWith(SpringRunner.class)
 public class GradeServiceJdbcTemplateTest {
+	PaieUtils pu = new PaieUtils();
+	
 	@Autowired
 	private GradeService gradeService;
 	
@@ -43,13 +46,12 @@ public class GradeServiceJdbcTemplateTest {
 		// sauvegarder un nouveau grade
 		gradeService.sauvegarder(nouveauGrade);
 
-		// vérifier qu'il est possible de récupérer le nouveau grade via la méthode
-		// lister
+		// vérifier qu'il est possible de récupérer le nouveau grade via la méthode lister
 		Grade gradeliste0 = gradeService.lister().get(0);
 		assertThat(gradeliste0.getId()).isEqualTo(1);
 		assertThat(gradeliste0.getCode()).isEqualTo("CODE1");
-		assertThat(gradeliste0.getNbHeuresBase()).isEqualTo("151.67");
-		assertThat(gradeliste0.getTauxBase()).isEqualTo("11.0984");
+		assertThat(pu.formaterBigDecimal(gradeliste0.getNbHeuresBase())).isEqualTo(pu.formaterBigDecimal(new BigDecimal("151.67")));
+		assertThat(pu.formaterBigDecimal(gradeliste0.getTauxBase())).isEqualTo(pu.formaterBigDecimal(new BigDecimal("11.0984")));
 
 		// modifier un grade
 		Grade gradeUp = new Grade();
@@ -59,13 +61,12 @@ public class GradeServiceJdbcTemplateTest {
 		gradeUp.setTauxBase(new BigDecimal("12.9048"));
 		gradeService.mettreAJour(gradeUp);
 
-		// vérifier que les modifications sont bien prises en compte via la méthode
-		// lister
+		// vérifier que les modifications sont bien prises en compte via la méthode lister
 		Grade gradeliste1 = gradeService.lister().get(0);
 		assertThat(gradeliste1.getId()).isEqualTo(1);
 		assertThat(gradeliste1.getCode()).isEqualTo("Code2");
-		assertThat(gradeliste1.getNbHeuresBase()).isEqualTo("115.76");
-		assertThat(gradeliste1.getTauxBase()).isEqualTo("12.9048");
+		assertThat(pu.formaterBigDecimal(gradeliste1.getNbHeuresBase())).isEqualTo(pu.formaterBigDecimal(new BigDecimal("115.76")));
+		assertThat(pu.formaterBigDecimal(gradeliste1.getTauxBase())).isEqualTo(pu.formaterBigDecimal(new BigDecimal("12.9048")));
 
 		// vérifier que la suppression est bien prise en compte
 		gradeService.supprimer(gradeliste1);

@@ -16,10 +16,10 @@ public class Grade {
 	@Column(name = "code")
 	private String code;
 	
-	@Column(name = "nb_heure_base")
+	@Column(name = "nb_heure_base", columnDefinition = "DECIMAL(19,8)")
 	private BigDecimal nbHeuresBase;
 	
-	@Column(name = "taux_base")
+	@Column(name = "taux_base", columnDefinition = "DECIMAL(19,8)")
 	private BigDecimal tauxBase;
 	
 	public String getCode() {

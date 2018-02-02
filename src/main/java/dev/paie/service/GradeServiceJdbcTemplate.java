@@ -24,27 +24,29 @@ public class GradeServiceJdbcTemplate implements GradeService {
 
 	@Override
 	public void sauvegarder(Grade nouveauGrade) {
-		String sqlInsert = "INSERT INTO grade(ID, CODE, NBHEURESBASE, TAUXBASE) VALUES(?, ?, ?, ?)";
+		String sqlInsert = "INSERT INTO sirh_grade(id, code, nb_heure_base, taux_base) VALUES(?, ?, ?, ?)";
 		jdbcTemplate.update(sqlInsert, 
 				nouveauGrade.getId(), 
 				nouveauGrade.getCode(), 
 				nouveauGrade.getNbHeuresBase().toString(),
-				nouveauGrade.getTauxBase().toString());
+				nouveauGrade.getTauxBase().toString()
+		);
 	}
 
 	@Override
 	public void mettreAJour(Grade grade) {
-		String sqlUpdate = "UPDATE grade SET CODE = ?, NBHEURESBASE = ?, TAUXBASE = ? WHERE ID = ?";
-		jdbcTemplate.update(sqlUpdate,  
+		String sqlUpdate = "UPDATE sirh_grade SET code = ?, nb_heure_base = ?, taux_base = ? WHERE id = ?";
+		jdbcTemplate.update(sqlUpdate,
 				grade.getCode(), 
 				grade.getNbHeuresBase().toString(),
 				grade.getTauxBase().toString(),
-				grade.getId());
+				grade.getId()
+		);
 	}
 	
 	@Override
 	public void supprimer(Grade grade) {
-		String sqlDelete = "DELETE FROM grade WHERE ID = ?";
+		String sqlDelete = "DELETE FROM sirh_grade WHERE id = ?";
 		jdbcTemplate.update(sqlDelete, grade.getId());
 	}
 
@@ -52,14 +54,13 @@ public class GradeServiceJdbcTemplate implements GradeService {
 	public List<Grade> lister() {
 		RowMapper<Grade> mapperGrade = (ResultSet rs, int rowNum) -> {
 			Grade g = new Grade();
-			g.setId(rs.getInt("ID"));
-			g.setCode(rs.getString("CODE"));
-			g.setNbHeuresBase(rs.getBigDecimal("NBHEURESBASE"));
-			g.setTauxBase(rs.getBigDecimal("TAUXBASE"));
+			g.setId(rs.getInt("id"));
+			g.setCode(rs.getString("code"));
+			g.setNbHeuresBase(rs.getBigDecimal("nb_heure_base"));
+			g.setTauxBase(rs.getBigDecimal("taux_base"));
 			return g;
 		};
-		String sqlSelect = "SELECT * FROM grade";
+		String sqlSelect = "SELECT * FROM sirh_grade";
 		return jdbcTemplate.query(sqlSelect, mapperGrade);
-//		return null;
 	}
 }
