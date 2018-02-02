@@ -37,13 +37,23 @@ public class AvantageRepositoryTest {
 		avantageRepository.save(avantage1);
 		
 		// TODO vérifier qu'il est possible de récupérer le nouvel avantage via la méthode findOne
-		Avantage avantageVerif = avantageRepository.findOne(1);
+//		Avantage avantageVerif = avantageRepository.findOne(1);
+		Avantage avantageVerif = avantageRepository.getByCode("CODE1");
 		assertThat(avantageVerif.getId()).isEqualTo(1);
 		assertThat(avantageVerif.getCode()).isEqualTo("CODE1");
 		assertThat(avantageVerif.getNom()).isEqualTo("avantage1");
 		assertThat(avantageVerif.getMontant()).isEqualTo(pu.formaterBigDecimal(new BigDecimal("10.23")));
 		
 		// TODO modifier un avantage
+		avantage1.setMontant(new BigDecimal("6.34"));
+		avantageRepository.save(avantage1);
+		
 		// TODO vérifier que les modifications sont bien prises en compte via la méthode findOne
+//		avantageVerif = avantageRepository.findOne(1);
+		avantageVerif = avantageRepository.getByCode("CODE1");
+		assertThat(avantageVerif.getId()).isEqualTo(1);
+		assertThat(avantageVerif.getCode()).isEqualTo("CODE1");
+		assertThat(avantageVerif.getNom()).isEqualTo("avantage1");
+		assertThat(avantageVerif.getMontant()).isEqualTo(pu.formaterBigDecimal(new BigDecimal("6.34")));
 	}
 }
