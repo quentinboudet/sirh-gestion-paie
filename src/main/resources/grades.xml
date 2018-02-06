@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<bean id="grade1" class="dev.paie.entite.Grade">
+		<property name="code" value="GRADE_A"></property>
+		<property name="nbHeuresBase" value="151.67"></property>
+		<property name="tauxBase" value="11.0984"></property>
+	</bean>
+	
+	<bean id="grade2" class="dev.paie.entite.Grade">
+		<property name="code" value="GRADE_B"></property>
+		<property name="nbHeuresBase" value="151.67"></property>
+		<property name="tauxBase" value="21.0984"></property>
+	</bean>
+	
+	<bean id="grade3" class="dev.paie.entite.Grade">
+		<property name="code" value="GRADE_C"></property>
+		<property name="nbHeuresBase" value="151.67"></property>
+		<property name="tauxBase" value="31.0984"></property>
+	</bean>
+
+</beans>

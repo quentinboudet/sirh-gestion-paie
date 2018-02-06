@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<import resource="classpath:cotisations-imposables.xml" />
+	<import resource="classpath:cotisations-non-imposables.xml" />
+	
+	
+	<bean id="profil-technicien" class="dev.paie.entite.ProfilRemuneration">
+		<property name="code" value="Technicien"></property>
+		<property name="cotisationsNonImposables">
+			<util:list value-type="dev.paie.entite.Cotisation">
+				<ref bean="ep01" />
+				<ref bean="ep02" />
+				<ref bean="ep03" />
+				<ref bean="ep04" />
+				<ref bean="ep05" />
+				<ref bean="ep06" />
+				<ref bean="ep07" />
+			</util:list>
+		</property>
+		<property name="cotisationsImposables">
+			<util:list value-type="dev.paie.entite.Cotisation">
+				<ref bean="sp01" />
+				<ref bean="sp02" />
+			</util:list>
+		</property>
+		
+	</bean>
+	
+	<bean id="profil-cadre" class="dev.paie.entite.ProfilRemuneration">
+		<property name="code" value="Cadre"></property>
+		<property name="cotisationsNonImposables">
+			<util:list value-type="dev.paie.entite.Cotisation">
+				<ref bean="ep01" />
+				<ref bean="ep02" />
+				<ref bean="ep03" />
+				<ref bean="ep04" />
+				<ref bean="ep05" />
+				<ref bean="ep06" />
+				<ref bean="ep07" />
+				<ref bean="ep12" />
+				<ref bean="ep19" />
+				<ref bean="ep20" />
+				<ref bean="epr1" />
+				<ref bean="e900" />
+				<ref bean="ep28" />
+				<ref bean="ep37" />
+			</util:list>
+		</property>
+		<property name="cotisationsImposables">
+			<util:list value-type="dev.paie.entite.Cotisation">
+				<ref bean="sp01" />
+				<ref bean="sp02" />
+			</util:list>
+		</property>
+		
+	</bean>
+	
+	<bean id="profil-stagiaire" class="dev.paie.entite.ProfilRemuneration">
+		<property name="code" value="Stagiaire"></property>
+		<property name="cotisationsNonImposables">
+			<util:list value-type="dev.paie.entite.Cotisation">
+				<ref bean="ep01" />
+				<ref bean="ep02" />
+				<ref bean="ep03" />
+			</util:list>
+		</property>
+		<property name="cotisationsImposables">
+			<util:list value-type="dev.paie.entite.Cotisation">
+				<ref bean="sp01" />
+			</util:list>
+		</property>
+		
+	</bean>
+
+</beans>

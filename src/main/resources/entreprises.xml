@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<bean id="entreprise1" class="dev.paie.entite.Entreprise">
+		<property name="siret" value="80966785000022"></property>
+		<property name="denomination" value="Dev Institut"></property>
+		<property name="codeNaf" value="6202A"></property>
+	</bean>
+	
+	<bean id="entreprise2" class="dev.paie.entite.Entreprise">
+		<property name="siret" value="5555555000022"></property>
+		<property name="denomination" value="Sopra-Steria"></property>
+		<property name="codeNaf" value="6202A"></property>
+	</bean>
+	
+	<bean id="entreprise3" class="dev.paie.entite.Entreprise">
+		<property name="siret" value="6666665000022"></property>
+		<property name="denomination" value="Capgemini"></property>
+		<property name="codeNaf" value="6202A"></property>
+	</bean>
+
+</beans>

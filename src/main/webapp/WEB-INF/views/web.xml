@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+	<display-name>sirh-paie</display-name>
+	
+	<servlet>
+		<servlet-name>ListerCollaborateursController</servlet-name>
+		<servlet-class>dev.sgp.web.ListerCollaborateursController</servlet-class>
+	</servlet>
+</web-app>

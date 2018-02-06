@@ -4,8 +4,12 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 
@@ -14,18 +18,21 @@ import javax.persistence.Table;
 public class ProfilRemuneration {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column(name="code")
 	private String code;
 
-	@OneToMany
+	@ManyToMany
+	@JoinTable(name="sirh_profil_remuneration_cotisations_non_imposables")
 	private List<Cotisation> cotisationsNonImposables;
 
-	@OneToMany
+	@ManyToMany
+	@JoinTable(name="sirh_profil_remuneration_cotisations_imposables")
 	private List<Cotisation> cotisationsImposables;
 
-	@OneToMany
+	@ManyToMany
 	private List<Avantage> avantages;
 
 	public Integer getId() {
