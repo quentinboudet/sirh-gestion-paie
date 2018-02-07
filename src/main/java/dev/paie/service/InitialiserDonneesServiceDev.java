@@ -6,7 +6,9 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +17,8 @@ import dev.paie.entite.Entreprise;
 import dev.paie.entite.Grade;
 import dev.paie.entite.Periode;
 import dev.paie.entite.ProfilRemuneration;
+import dev.paie.entite.Utilisateur;
+import dev.paie.entite.Utilisateur.ROLES;
 
 @Service
 public class InitialiserDonneesServiceDev implements InitialiserDonneesService{
@@ -22,10 +26,11 @@ public class InitialiserDonneesServiceDev implements InitialiserDonneesService{
 	@PersistenceContext
 	private EntityManager em;
 	
+	@Autowired private PasswordEncoder passwordEncoder;
+	
 	@Transactional
 	@Override
 	public void initialiser() {	
-		System.out.println("init");
 
 		ClassPathXmlApplicationContext context;
 		
@@ -47,8 +52,6 @@ public class InitialiserDonneesServiceDev implements InitialiserDonneesService{
 		entreprises.values().forEach(c -> em.persist(c));
 		
 		Map<String, ProfilRemuneration> prs = context.getBeansOfType(ProfilRemuneration.class);
-		System.out.println(prs.get("profil-technicien").getCotisationsImposables());
-		System.out.println(prs.get("profil-technicien").getCotisationsNonImposables());
 		prs.values().forEach(c -> em.persist(c));
 		
 		//création des périodes de chaque mois de 2018
@@ -58,6 +61,20 @@ public class InitialiserDonneesServiceDev implements InitialiserDonneesService{
 			per.setDateFin(LocalDate.of(2018, i, 01).plusMonths(1).minusDays(1));
 			em.persist(per);
 		}
+		
+		Utilisateur u1 = new Utilisateur();
+		u1.setNomUtilisateur("admin");
+		u1.setMotDePasse(this.passwordEncoder.encode("admin"));
+		u1.setRole(ROLES.ROLE_ADMINISTRATEUR);
+		u1.setEstActif(true);
+		em.persist(u1);
+		
+		Utilisateur u2 = new Utilisateur();
+		u2.setNomUtilisateur("moi");
+		u2.setMotDePasse(this.passwordEncoder.encode("moi"));
+		u2.setRole(ROLES.ROLE_UTILISATEUR);
+		u2.setEstActif(true);
+		em.persist(u2);
 		
 		context.close();
 		
