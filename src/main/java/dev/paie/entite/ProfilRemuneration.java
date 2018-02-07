@@ -1,9 +1,11 @@
 package dev.paie.entite;
 
-import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,16 +26,35 @@ public class ProfilRemuneration {
 	@Column(name="code")
 	private String code;
 
-	@ManyToMany
-	@JoinTable(name="sirh_profil_remuneration_cotisations_non_imposables")
-	private List<Cotisation> cotisationsNonImposables;
+	@ManyToMany(fetch=FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+                })
+	@JoinTable(name="sirh_profil_remuneration_cotisations_non_imposables",
+			joinColumns = @JoinColumn(name = "ID_profil", referencedColumnName = "id"), 
+			inverseJoinColumns = @JoinColumn(name = "ID_cotisation", referencedColumnName = "id"))
+	private Set<Cotisation> cotisationsNonImposables;
 
-	@ManyToMany
-	@JoinTable(name="sirh_profil_remuneration_cotisations_imposables")
-	private List<Cotisation> cotisationsImposables;
+	@ManyToMany(fetch=FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+                })
+	@JoinTable(name="sirh_profil_remuneration_cotisations_imposables",
+			joinColumns = @JoinColumn(name = "ID_profil", referencedColumnName = "id"), 
+			inverseJoinColumns = @JoinColumn(name = "ID_cotisation", referencedColumnName = "id"))
+	private Set<Cotisation> cotisationsImposables;
 
-	@ManyToMany
-	private List<Avantage> avantages;
+	@ManyToMany(fetch=FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+                })
+	@JoinTable(name="sirh_profil_remuneration_avantage",
+			joinColumns = @JoinColumn(name = "ID_profil", referencedColumnName = "id"), 
+			inverseJoinColumns = @JoinColumn(name = "ID_avantage", referencedColumnName = "id"))
+	private Set<Avantage> avantages;
 
 	public Integer getId() {
 		return id;
@@ -51,27 +72,27 @@ public class ProfilRemuneration {
 		this.code = code;
 	}
 
-	public List<Cotisation> getCotisationsNonImposables() {
+	public Set<Cotisation> getCotisationsNonImposables() {
 		return cotisationsNonImposables;
 	}
 
-	public void setCotisationsNonImposables(List<Cotisation> cotisationsNonImposables) {
+	public void setCotisationsNonImposables(Set<Cotisation> cotisationsNonImposables) {
 		this.cotisationsNonImposables = cotisationsNonImposables;
 	}
 
-	public List<Cotisation> getCotisationsImposables() {
+	public Set<Cotisation> getCotisationsImposables() {
 		return cotisationsImposables;
 	}
 
-	public void setCotisationsImposables(List<Cotisation> cotisationsImposables) {
+	public void setCotisationsImposables(Set<Cotisation> cotisationsImposables) {
 		this.cotisationsImposables = cotisationsImposables;
 	}
 
-	public List<Avantage> getAvantages() {
+	public Set<Avantage> getAvantages() {
 		return avantages;
 	}
 
-	public void setAvantages(List<Avantage> avantages) {
+	public void setAvantages(Set<Avantage> avantages) {
 		this.avantages = avantages;
 	}
 

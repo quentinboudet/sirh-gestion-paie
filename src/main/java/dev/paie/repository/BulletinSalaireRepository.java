@@ -11,4 +11,6 @@ import dev.paie.entite.BulletinSalaire;
 public interface BulletinSalaireRepository extends JpaRepository<BulletinSalaire, Integer>{	
 
 	public List<BulletinSalaire> findAll() ;
+	
+	
 }

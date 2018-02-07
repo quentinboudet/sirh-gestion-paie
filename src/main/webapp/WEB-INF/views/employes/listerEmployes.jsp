@@ -11,8 +11,7 @@
   </tr>
   <c:forEach items="${listRe}" var="re">
   <tr>
-<%--     <td><fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${dateFormat.parse(re.dateCreation)}" /></td> --%>
-    <td>${re.dateCreation.format(dateFormatter)}</td>
+    <td>${re.dateCreation.format(dateTimeFormatter)}</td>
     <td>${re.matricule}</td>
     <td>${re.grade.code}</td>
   </tr>

@@ -71,7 +71,7 @@ public class RemunerationEmployeController {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("employes/listerEmployes");
         mv.addObject("listRe", rer.findAll());
-        mv.addObject("dateFormatter", DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm"));
+        mv.addObject("dateTimeFormatter", DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm"));
         return mv;
     }
 }

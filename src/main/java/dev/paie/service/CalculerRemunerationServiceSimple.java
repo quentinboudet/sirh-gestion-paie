@@ -1,9 +1,13 @@
 package dev.paie.service;
 
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.Set;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import dev.paie.entite.BulletinSalaire;
 import dev.paie.entite.Cotisation;
@@ -15,7 +19,10 @@ import dev.paie.util.PaieUtils;
 @Service
 public class CalculerRemunerationServiceSimple implements CalculerRemunerationService{
 	private PaieUtils pu = new PaieUtils();
+	
+	@PersistenceContext EntityManager em;
 
+	@Transactional
 	@Override
 	public ResultatCalculRemuneration calculer(BulletinSalaire bulletin) {
 		ResultatCalculRemuneration resultat = new ResultatCalculRemuneration();
@@ -53,7 +60,8 @@ public class CalculerRemunerationServiceSimple implements CalculerRemunerationSe
 
 		return resultat;
 	}
-	private BigDecimal calculSommeCotisationSalarial(List<Cotisation> cotisations, String salaireBrut) {
+	@Transactional
+	private BigDecimal calculSommeCotisationSalarial(Set<Cotisation> cotisations, String salaireBrut) {
 		return cotisations
 			.stream()
 			.filter(c -> c.getTauxSalarial()!=null)
@@ -61,7 +69,8 @@ public class CalculerRemunerationServiceSimple implements CalculerRemunerationSe
 			.reduce((a,b) -> a.add(b)).orElse(new BigDecimal(0));
 	}
 
-	private BigDecimal calculSommeCotisationPatronal(List<Cotisation> cotisations, String salaireBrut) {
+	@Transactional
+	private BigDecimal calculSommeCotisationPatronal(Set<Cotisation> cotisations, String salaireBrut) {
 		return cotisations
 			.stream()
 			.filter(c -> c.getTauxPatronal()!=null)

@@ -1,3 +1,8 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}/mvc"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +23,6 @@
 </head>
 <body>
 	<nav class="nav">
-		<a class="nav-link" href="">Employés</a>
-		<a class="nav-link" href="">Bulletins</a>
+		<a class="nav-link" href="${contextPath}/employes/lister">Employés</a>
+		<a class="nav-link" href="${contextPath}/bulletins/lister">Bulletins</a>
 	</nav>
